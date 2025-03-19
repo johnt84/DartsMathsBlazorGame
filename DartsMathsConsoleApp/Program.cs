@@ -23,11 +23,7 @@ while (playAgain)
     Console.WriteLine("\nEnter a Score value?");
     int scoreValue = Convert.ToInt32(Console.ReadLine());
 
-    var playerGuess = new Score
-    {
-        ScoreArea = (ScoreArea)scoreArea,
-        ScoreValue = scoreValue
-    };
+    var playerGuess = new Score((ScoreArea)scoreArea, scoreValue: scoreValue);
 
     bool isCorrect = service.CompleteFinisherGuess(playerGuess);
 
@@ -46,11 +42,7 @@ while (playAgain)
     playAgain = playAgainInput == "y";
 }
 
-var playerGuess2 = new Score
-{
-    ScoreArea = ScoreArea.Single,
-    ScoreValue = 16
-};
+var playerGuess2 = new Score(ScoreArea.Single, scoreValue: 16);
 
 bool isCorrect2 = service.CompleteFinisherGuess(playerGuess2);
 
@@ -60,40 +52,18 @@ var scoresForFinisher = service2.SetUpFinisher(false);
 
 var playerGuess3 = new List<Score>
 {
-    new Score
-    {
-        ScoreArea = ScoreArea.Treble,
-        ScoreValue = 19
-    },
-    new Score
-    {
-        ScoreArea = ScoreArea.Single,
-        ScoreValue = 16
-    },
-    new Score
-    {
-        ScoreArea = ScoreArea.InnerBull
-    }
+    new Score(ScoreArea.Treble, scoreValue: 19),
+    new Score(ScoreArea.Single, scoreValue: 16),
+    new Score(ScoreArea.InnerBull)
 };
 
 bool isCorrect3 = service2.FinisherGuess(playerGuess3);
 
 var playerGuess4 = new List<Score>
 {
-    new Score
-    {
-        ScoreArea = ScoreArea.Treble,
-        ScoreValue = 19
-    },
-    new Score
-    {
-        ScoreArea = ScoreArea.Single,
-        ScoreValue = 16
-    },
-    new Score
-    {
-        ScoreArea = ScoreArea.OuterBull
-    }
+    new Score(ScoreArea.Treble, scoreValue: 19),
+    new Score(ScoreArea.Single, scoreValue: 16),
+    new Score(ScoreArea.OuterBull)
 };
 
 bool isCorrect4 = service.FinisherGuess(playerGuess4);

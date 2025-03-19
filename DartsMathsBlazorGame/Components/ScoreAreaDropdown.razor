@@ -1,0 +1,12 @@
+﻿<MudSelect Value="ScoreArea"
+           Label="@Label"
+           Class="@Class"
+           ValueChanged="ScoreAreaChanged"
+           Placeholder="Please Select">
+    @foreach (var scoreArea in ScoreAreas)
+    {
+        <MudSelectItem Value="@scoreArea">
+            @scoreArea
+        </MudSelectItem>
+    }
+</MudSelect>

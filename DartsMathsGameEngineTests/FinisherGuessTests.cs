@@ -12,16 +12,9 @@ public sealed class FinisherGuessTests
     public void NoScoreForMatchGuess_GuessIsIncorrect()
     {
         // Arrange
-        var trebleTwenty = new Score
-        {
-            ScoreArea = ScoreArea.Treble,
-            ScoreValue = 20
-        };
+        var trebleTwenty = new Score(ScoreArea.Treble, scoreValue: 20);
 
-        var score = new Score
-        {
-            ScoreArea = ScoreArea.InnerBull
-        };
+        var score = new Score(ScoreArea.InnerBull);
 
         var scores = new List<Score>()
         {
@@ -42,17 +35,9 @@ public sealed class FinisherGuessTests
     public void LeftToScoreHasNoFinish_GuessIsIncorrect()
     {
         // Arrange
-        var trebleTwenty = new Score
-        {
-            ScoreArea = ScoreArea.Treble,
-            ScoreValue = 20
-        };
+        var trebleTwenty = new Score(ScoreArea.Treble, scoreValue: 20);
 
-        var score = new Score
-        {
-            ScoreArea = ScoreArea.Double,
-            ScoreValue = 20
-        };
+        var score = new Score(ScoreArea.Double, scoreValue: 20);
 
         var scores = new List<Score>()
         {
@@ -77,11 +62,7 @@ public sealed class FinisherGuessTests
     public void LastThrowIsNotADouble_GuessIsIncorrect()
     {
         // Arrange
-        var trebleTwenty = new Score
-        {
-            ScoreArea = ScoreArea.Treble,
-            ScoreValue = 20
-        };
+        var trebleTwenty = new Score(ScoreArea.Treble, scoreValue: 20);
 
         var scores = new List<Score>()
         {
@@ -107,16 +88,9 @@ public sealed class FinisherGuessTests
     public void IncorrectFinishScoreGuessed_GuessIsIncorrect()
     {
         // Arrange
-        var trebleTwenty = new Score
-        {
-            ScoreArea = ScoreArea.Treble,
-            ScoreValue = 20
-        };
+        var trebleTwenty = new Score(ScoreArea.Treble, scoreValue: 20);
 
-        var score = new Score
-        {
-            ScoreArea = ScoreArea.OuterBull
-        };
+        var score = new Score(ScoreArea.OuterBull);
 
         var scores = new List<Score>()
         {
@@ -142,16 +116,9 @@ public sealed class FinisherGuessTests
     public void CorrectFinishScoreGuessed_GuessIsCorrect()
     {
         // Arrange
-        var trebleTwenty = new Score
-        {
-            ScoreArea = ScoreArea.Treble,
-            ScoreValue = 20
-        };
+        var trebleTwenty = new Score(ScoreArea.Treble, scoreValue: 20);
 
-        var score = new Score
-        {
-            ScoreArea = ScoreArea.InnerBull
-        };
+        var score = new Score(ScoreArea.InnerBull);
 
         var scores = new List<Score>()
         {

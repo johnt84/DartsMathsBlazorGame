@@ -12,11 +12,7 @@ public sealed class CompleteFinisherGuessTests
     public void NoScoreForMathsGuess_GuessIsIncorrect()
     {
         // Arrange
-        var trebleTwenty = new Score
-        {
-            ScoreArea = ScoreArea.Treble,
-            ScoreValue = 20
-        };
+        var trebleTwenty = new Score(ScoreArea.Treble, scoreValue: 20);
 
         var scores = new List<Score>()
         {
@@ -24,10 +20,7 @@ public sealed class CompleteFinisherGuessTests
             trebleTwenty,
         };
 
-        var score = new Score
-        {
-            ScoreArea = ScoreArea.InnerBull
-        };
+        var score = new Score(ScoreArea.InnerBull);
 
         // Act
         bool isCorrectGuess = CallService(null, score);
@@ -40,11 +33,7 @@ public sealed class CompleteFinisherGuessTests
     public void NoScoresOnScoreForMathsGuess_GuessIsIncorrect()
     {
         // Arrange
-        var trebleTwenty = new Score
-        {
-            ScoreArea = ScoreArea.Treble,
-            ScoreValue = 20
-        };
+        var trebleTwenty = new Score(ScoreArea.Treble, scoreValue: 20);
 
         var scores = new List<Score>()
         {
@@ -57,10 +46,7 @@ public sealed class CompleteFinisherGuessTests
             LeftToScore = 170
         };
 
-        var score = new Score
-        {
-            ScoreArea = ScoreArea.InnerBull
-        };
+        var score = new Score(ScoreArea.InnerBull);
 
         // Act
         bool isCorrectGuess = CallService(scoresForMathsGuess, score);
@@ -73,11 +59,7 @@ public sealed class CompleteFinisherGuessTests
     public void LeftToScoreHasNoFinish_GuessIsIncorrect()
     {
         // Arrange
-        var trebleTwenty = new Score
-        {
-            ScoreArea = ScoreArea.Treble,
-            ScoreValue = 20
-        };
+        var trebleTwenty = new Score(ScoreArea.Treble, scoreValue: 20);
 
         var scores = new List<Score>()
         {
@@ -91,11 +73,7 @@ public sealed class CompleteFinisherGuessTests
             Scores = scores
         };
 
-        var score = new Score
-        {
-            ScoreArea = ScoreArea.Double,
-            ScoreValue = 20
-        };
+        var score = new Score(ScoreArea.Double, scoreValue: 20);
 
         // Act
         bool isCorrectGuess = CallService(scoresForMathsGuess, score);
@@ -108,11 +86,7 @@ public sealed class CompleteFinisherGuessTests
     public void LastThrowIsNotADouble_GuessIsIncorrect()
     {
         // Arrange
-        var trebleTwenty = new Score
-        {
-            ScoreArea = ScoreArea.Treble,
-            ScoreValue = 20
-        };
+        var trebleTwenty = new Score(ScoreArea.Treble, scoreValue: 20);
 
         var scores = new List<Score>()
         {
@@ -137,11 +111,7 @@ public sealed class CompleteFinisherGuessTests
     public void IncorrectFinishScoreGuessed_GuessIsIncorrect()
     {
         // Arrange
-        var trebleTwenty = new Score
-        {
-            ScoreArea = ScoreArea.Treble,
-            ScoreValue = 20
-        };
+        var trebleTwenty = new Score(ScoreArea.Treble, scoreValue: 20);
 
         var scores = new List<Score>()
         {
@@ -155,10 +125,7 @@ public sealed class CompleteFinisherGuessTests
             Scores = scores
         };
 
-        var score = new Score
-        {
-            ScoreArea = ScoreArea.OuterBull
-        };
+        var score = new Score(ScoreArea.OuterBull);
 
         // Act
         bool isCorrectGuess = CallService(scoresForMathsGuess, score);
@@ -171,11 +138,7 @@ public sealed class CompleteFinisherGuessTests
     public void CorrectFinishScoreGuessed_GuessIsCorrect()
     {
         // Arrange
-        var trebleTwenty = new Score
-        {
-            ScoreArea = ScoreArea.Treble,
-            ScoreValue = 20
-        };
+        var trebleTwenty = new Score(ScoreArea.Treble, scoreValue: 20);
 
         var scores = new List<Score>()
         {
@@ -189,10 +152,7 @@ public sealed class CompleteFinisherGuessTests
             Scores = scores
         };
 
-        var score = new Score
-        {
-            ScoreArea = ScoreArea.InnerBull
-        };
+        var score = new Score(ScoreArea.InnerBull);
 
         // Act
         bool isCorrectGuess = CallService(scoresForMathsGuess, score);

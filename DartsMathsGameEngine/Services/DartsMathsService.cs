@@ -198,19 +198,12 @@ public class DartsMathsService : IDartsMathsService
 
         if (bullseyes.Contains((ScoreArea)scoreArea))
         {
-            return new Score
-            {
-                ScoreArea = (ScoreArea)scoreArea
-            };
+            return new Score((ScoreArea)scoreArea);
         }
 
         int scoreValue = random.Next(15, 20);
 
-        return new Score
-        {
-            ScoreArea = (ScoreArea)scoreArea,
-            ScoreValue = scoreValue
-        };
+        return new Score((ScoreArea)scoreArea, scoreValue: scoreValue);
     }
 
     private bool CanFinish(bool scoresContainsFinisher, int leftToScore)
