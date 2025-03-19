@@ -1,0 +1,27 @@
+﻿@if (ScoreForMathsGuess is not null)
+{
+    <MudField Class="mt-4 ml-4 mb-6" Label="Left to score">
+        @ScoreForMathsGuess.LeftToScore
+    </MudField>
+
+    @if (ScoreForMathsGuess.Scores is not null)
+    {
+        foreach (var score in ScoreForMathsGuess.Scores)
+        {
+            if (ContainsABull(score.ScoreArea))
+            {
+                <MudField Class="ml-4 mb-4" Label="Score">
+                    @score.ScoreArea
+                </MudField>
+            }
+            else
+            {
+                <MudField Class="ml-4  mb-4" Label="Score">
+                    @score.ScoreArea-@score.ScoreValue
+                </MudField>
+            }
+        }
+    }
+}
+
+

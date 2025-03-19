@@ -1,10 +1,16 @@
 using DartsMathsBlazorGame.Components;
+using DartsMathsGameEngine.Services;
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddScoped<IDartsMathsService, DartsMathsService>();
+
+builder.Services.AddMudServices();
 
 var app = builder.Build();
 
