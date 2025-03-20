@@ -14,16 +14,23 @@ while (playAgain)
 
     foreach (var score in scoresForCompleteFinisher.Scores)
     {
-        Console.WriteLine($"\nScore area: {score.ScoreArea}, Score value: {score.ScoreValue}");
+        Console.WriteLine($"\nScore: {score.ScoreLabel}");
     }
 
-    Console.WriteLine("\nEnter a Score Area (0 - 2)?  Single-0, Double-1, Treble-2, InnerBull-3, OuterBull-4");
+    Console.WriteLine("\nEnter a Score Area (0 - 2)?  Single-0, Double-1, Treble-2, OuterBull-3, Bullseye-4");
     int scoreArea = Convert.ToInt32(Console.ReadLine());
 
-    Console.WriteLine("\nEnter a Score value?");
-    int scoreValue = Convert.ToInt32(Console.ReadLine());
+    var scoringArea = (ScoreArea)scoreArea;
 
-    var playerGuess = new Score((ScoreArea)scoreArea, scoreValue: scoreValue);
+    int? scoreValue = null;
+
+    if (scoringArea != ScoreArea.Bullseye && scoringArea != ScoreArea.OuterBull)
+    {
+        Console.WriteLine("\nEnter a Score value?");
+        scoreValue = Convert.ToInt32(Console.ReadLine());
+    }
+
+    var playerGuess = new Score(scoringArea, scoreValue: scoreValue);
 
     bool isCorrect = service.CompleteFinisherGuess(playerGuess);
 
@@ -34,6 +41,8 @@ while (playAgain)
     else
     {
         Console.WriteLine("\nIncorrect!");
+
+        Console.WriteLine($"\nCorrect Score is {scoresForCompleteFinisher.ScoreToFinish.ScoreLabel}");
     }
 
     Console.WriteLine("\nPlay again (y/n)?");
@@ -54,7 +63,7 @@ var playerGuess3 = new List<Score>
 {
     new Score(ScoreArea.Treble, scoreValue: 19),
     new Score(ScoreArea.Single, scoreValue: 16),
-    new Score(ScoreArea.InnerBull)
+    new Score(ScoreArea.Bullseye)
 };
 
 bool isCorrect3 = service2.FinisherGuess(playerGuess3);
@@ -99,7 +108,7 @@ var thirdScoreEntry = service.CalculateScore(thirdDartsScores);
 
 var fourthDartsScores = new List<Score>
 {
-    new Score { ScoreArea = ScoreArea.InnerBull },
+    new Score { ScoreArea = ScoreArea.Bullseye },
     new Score { ScoreArea = ScoreArea.Single, ScoreValue = 6 },
     new Score { ScoreArea = ScoreArea.Double, ScoreValue = 20 }
 };

@@ -74,7 +74,7 @@ public sealed class SetUpFinishTests
             ScoreArea.Double => score.ScoreValue!.Value * 2,
             ScoreArea.Treble => score.ScoreValue!.Value * 3,
             ScoreArea.OuterBull => 25,
-            ScoreArea.InnerBull => 50,
+            ScoreArea.Bullseye => 50,
             _ => throw new ArgumentException("Invalid score area")
         };
 
@@ -87,21 +87,24 @@ public sealed class SetUpFinishTests
             return true;
         }
 
-        if (leftToScore % 3 != 0 && leftToScore % 2 != 0)
+        bool canTreble = leftToScore % 3 == 0;
+        bool canDouble = leftToScore % 2 == 0;
+
+        if (!canTreble && !canDouble)
         {
             return false;
         }
 
         int divideByThree = leftToScore / 3;
 
-        if (CanFinishScore(divideByThree))
+        if (canTreble && CanFinishScore(divideByThree))
         {
             return true;
         }
 
         int divideByTwo = leftToScore / 2;
 
-        if (CanFinishScore(divideByTwo))
+        if (canDouble && CanFinishScore(divideByTwo))
         {
             return true;
         }

@@ -17,16 +17,19 @@
             else
             {
                 <MudField Class="ml-4  mb-4" Label="Score">
-                    @score.ScoreArea-@score.ScoreValue
+                    @score.ScoreLabel
                 </MudField>
             }
         }
     }
 
-    <ScoreAreaDropdown Class="mt-4 ml-4 mb-4" @bind-ScoreArea="SelectedScoreArea" />
+    <ScoreAreaDropdown Class="mt-4 ml-4 mb-4" @bind-ScoringArea="SelectedScoreArea" />
 
-    <MudNumericField Class="ml-4 mb-4" 
+    <MudNumericField T="int"
+                    Class="ml-4 mb-4" 
                     Label="Score Value"
+                    Min="1"
+                    Max="20"
                     @bind-Value="ScoreValue" />
 
     <MudButton Variant="Variant.Filled"
@@ -58,6 +61,10 @@
         {
             <MudField Class="mt-5 ml-4 mb-4">
                 Incorrect
+            </MudField>
+
+            <MudField Class="mt-5 ml-4 mb-4" Label="Correct Score">
+                @ScoreForMathsGuess.ScoreToFinish.ScoreLabel
             </MudField>
         }
     }

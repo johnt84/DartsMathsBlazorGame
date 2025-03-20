@@ -19,7 +19,7 @@ public partial class DartsMaths
     private bool? IsGuessCorrect { get; set; }
 
     private bool ContainsABull (ScoreArea scoreArea) =>
-        scoreArea == ScoreArea.InnerBull || scoreArea == ScoreArea.OuterBull;
+        scoreArea == ScoreArea.Bullseye || scoreArea == ScoreArea.OuterBull;
 
     protected override void OnInitialized()
     {
@@ -47,7 +47,7 @@ public partial class DartsMaths
     private void ClearGuess()
     {
         SelectedScoreArea = ScoreArea.Single;
-        ScoreValue = 0;
+        ScoreValue = 1;
         IsGuessCorrect = null;
     }
 }

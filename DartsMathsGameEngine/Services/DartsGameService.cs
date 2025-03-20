@@ -10,9 +10,9 @@ public class DartsGameService : IDartsGameService
 
     private const int GameTotal = 501;
 
-    private const int Bullseye = 50;
+    private const int BullseyeScore = 50;
 
-    private const int InnerBullseye = 25;
+    private const int OuterBullScore = 25;
 
     public DartsGameService()
     {
@@ -34,7 +34,7 @@ public class DartsGameService : IDartsGameService
         {
             var lastDart = scores.Last().ScoreArea;
 
-            bool lastDartWasBullseye = lastDart == ScoreArea.InnerBull;
+            bool lastDartWasBullseye = lastDart == ScoreArea.Bullseye;
             bool lastDartWasDouble = lastDart == ScoreArea.Double;
 
             if (lastDartWasBullseye || lastDartWasDouble) 
@@ -80,7 +80,7 @@ public class DartsGameService : IDartsGameService
 
     private int GetScoreValue(Score score)
     {
-        var bullseyes = new List<ScoreArea> { ScoreArea.InnerBull, ScoreArea.OuterBull };
+        var bullseyes = new List<ScoreArea> { ScoreArea.Bullseye, ScoreArea.OuterBull };
 
         if (!bullseyes.Contains(score.ScoreArea) && score.ScoreValue is null)
         {
@@ -92,8 +92,8 @@ public class DartsGameService : IDartsGameService
             ScoreArea.Single => score.ScoreValue!.Value,
             ScoreArea.Double => score.ScoreValue!.Value * 2,
             ScoreArea.Treble => score.ScoreValue!.Value * 3,
-            ScoreArea.OuterBull => InnerBullseye,
-            ScoreArea.InnerBull => Bullseye,
+            ScoreArea.OuterBull => OuterBullScore,
+            ScoreArea.Bullseye => BullseyeScore,
             _ => throw new ArgumentException("Invalid score area")
         };
     }

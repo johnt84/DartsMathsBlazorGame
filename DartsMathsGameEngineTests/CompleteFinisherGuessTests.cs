@@ -20,7 +20,7 @@ public sealed class CompleteFinisherGuessTests
             trebleTwenty,
         };
 
-        var score = new Score(ScoreArea.InnerBull);
+        var score = new Score(ScoreArea.Bullseye);
 
         // Act
         bool isCorrectGuess = CallService(null, score);
@@ -46,7 +46,7 @@ public sealed class CompleteFinisherGuessTests
             LeftToScore = 170
         };
 
-        var score = new Score(ScoreArea.InnerBull);
+        var score = new Score(ScoreArea.Bullseye);
 
         // Act
         bool isCorrectGuess = CallService(scoresForMathsGuess, score);
@@ -152,7 +152,7 @@ public sealed class CompleteFinisherGuessTests
             Scores = scores
         };
 
-        var score = new Score(ScoreArea.InnerBull);
+        var score = new Score(ScoreArea.Bullseye);
 
         // Act
         bool isCorrectGuess = CallService(scoresForMathsGuess, score);

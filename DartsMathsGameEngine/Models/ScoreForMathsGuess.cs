@@ -4,4 +4,5 @@ public class ScoreForMathsGuess
 {
     public int LeftToScore { get; set; }
     public IEnumerable<Score>? Scores { get; set; }
+    public Score ScoreToFinish { get; set; } = null!;
 }

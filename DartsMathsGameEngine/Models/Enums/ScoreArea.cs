@@ -6,5 +6,5 @@ public enum ScoreArea
     Double,
     Treble,
     OuterBull,
-    InnerBull
+    Bullseye
 }

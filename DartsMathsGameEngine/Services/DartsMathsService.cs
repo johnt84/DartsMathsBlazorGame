@@ -7,9 +7,9 @@ public class DartsMathsService : IDartsMathsService
 {
     public ScoreForMathsGuess? ScoreForMathsGuess { get; set; }
 
-    private const int Bullseye = 50;
+    private const int BullseyeScore = 50;
 
-    private const int InnerBullseye = 25;
+    private const int OuterBullScore = 25;
 
     private const int MinimumFinalScore = 41;
 
@@ -26,13 +26,7 @@ public class DartsMathsService : IDartsMathsService
 
         if (completeFinisher)
         {
-            var scores = GenerateScores(leftToScore);
-
-            ScoreForMathsGuess = new ScoreForMathsGuess
-            {
-                LeftToScore = leftToScore,
-                Scores = scores
-            };
+            ScoreForMathsGuess = GenerateScores(leftToScore);
 
             return ScoreForMathsGuess;
         }
@@ -63,7 +57,7 @@ public class DartsMathsService : IDartsMathsService
         {
             var lastDart = scores.Last().ScoreArea;
 
-            bool lastDartWasBullseye = lastDart == ScoreArea.InnerBull;
+            bool lastDartWasBullseye = lastDart == ScoreArea.Bullseye;
             bool lastDartWasDouble = lastDart == ScoreArea.Double;
 
             if (lastDartWasBullseye || lastDartWasDouble)
@@ -94,7 +88,7 @@ public class DartsMathsService : IDartsMathsService
         completeScores.Add(score);
 
         bool scoreContainsValidFinishingThrow = 
-            completeScores.Any(score => score.ScoreArea == ScoreArea.InnerBull || score.ScoreArea == ScoreArea.Double);
+            completeScores.Any(score => score.ScoreArea == ScoreArea.Bullseye || score.ScoreArea == ScoreArea.Double);
 
         if (!scoreContainsValidFinishingThrow)
         {
@@ -118,7 +112,7 @@ public class DartsMathsService : IDartsMathsService
 
     private int GetScoreValue(Score score)
     {
-        var bullseyes = new List<ScoreArea> { ScoreArea.InnerBull, ScoreArea.OuterBull };
+        var bullseyes = new List<ScoreArea> { ScoreArea.Bullseye, ScoreArea.OuterBull };
 
         if (!bullseyes.Contains(score.ScoreArea) && score.ScoreValue is null)
         {
@@ -130,8 +124,8 @@ public class DartsMathsService : IDartsMathsService
             ScoreArea.Single => score.ScoreValue!.Value,
             ScoreArea.Double => score.ScoreValue!.Value * 2,
             ScoreArea.Treble => score.ScoreValue!.Value * 3,
-            ScoreArea.OuterBull => InnerBullseye,
-            ScoreArea.InnerBull => Bullseye,
+            ScoreArea.OuterBull => OuterBullScore,
+            ScoreArea.Bullseye => BullseyeScore,
             _ => throw new ArgumentException("Invalid score area")
         };
     }
@@ -146,26 +140,29 @@ public class DartsMathsService : IDartsMathsService
 
         while (nonFinishers.Contains(finisherScore))
         {
-            finisherScore = random.Next(MinimumFinalScore, MaximumFinalScore);
+            finisherScore = random.Next(MinimumFinalScore, MaximumFinalScore + 1);
         };
 
         return finisherScore;
     }
 
-    private List<Score> GenerateScores(int finisherScore)
+    private ScoreForMathsGuess GenerateScores(int finisherScore)
     {
         int scoreSum = finisherScore;
         bool containsFinisher = false;
 
         var generatedScores = new List<Score>();
 
-        while (scoreSum >= finisherScore || !CanFinish(containsFinisher, finisherScore - scoreSum))
+        Score? finishingScore = null;
+
+        while (scoreSum >= finisherScore || finishingScore is null)
         {
             generatedScores.Clear();
+            containsFinisher = false;
             generatedScores.Add(GenerateScore());
             generatedScores.Add(GenerateScore());
 
-            if (generatedScores.Any(score => score.ScoreArea == ScoreArea.InnerBull || score.ScoreArea == ScoreArea.Double))
+            if (generatedScores.Any(score => score.ScoreArea == ScoreArea.Bullseye || score.ScoreArea == ScoreArea.Double))
             {
                 containsFinisher = true;
             }
@@ -183,57 +180,69 @@ public class DartsMathsService : IDartsMathsService
 
                 currentScoreIndex++;
             }
+
+            int leftToScore = finisherScore - scoreSum;
+
+            finishingScore = CanFinish(containsFinisher, leftToScore);
         }
 
-        return generatedScores;
+        return new ScoreForMathsGuess
+        {
+            LeftToScore = finisherScore,
+            Scores = generatedScores,
+            ScoreToFinish = finishingScore!
+        };
     }
 
     private Score GenerateScore()
     {
         var random = new Random();
 
-        int scoreArea = random.Next(0, 4);
+        int scoreArea = random.Next(0, 5);
 
-        var bullseyes = new List<ScoreArea> { ScoreArea.InnerBull, ScoreArea.OuterBull };
+        var bullseyes = new List<ScoreArea> { ScoreArea.Bullseye, ScoreArea.OuterBull };
 
         if (bullseyes.Contains((ScoreArea)scoreArea))
         {
             return new Score((ScoreArea)scoreArea);
         }
 
-        int scoreValue = random.Next(15, 20);
+        int scoreValue = random.Next(15, 21);
 
         return new Score((ScoreArea)scoreArea, scoreValue: scoreValue);
     }
 
-    private bool CanFinish(bool scoresContainsFinisher, int leftToScore)
+    private Score? CanFinish(bool scoresContainsFinisher, int leftToScore)
     {
-        bool isFinishable(int value) => value <= 20;
+        bool isFinishable(int value) => value > 0 && value <= 20;
 
         if (scoresContainsFinisher && isFinishable(leftToScore))
         {
-            return true;
+            return new Score(ScoreArea.Single, leftToScore);
         }
 
-        if (leftToScore % 3 != 0 && leftToScore % 2 != 0)
+        bool canTreble = leftToScore % 3 == 0;
+        bool canDouble = leftToScore % 2 == 0;
+
+        if (canTreble && canDouble)
         {
-            return false;
+            return null;
         }
 
         int trebleValue = leftToScore / 3;
 
-        if (scoresContainsFinisher && isFinishable(trebleValue))
+        if (scoresContainsFinisher && canTreble && isFinishable(trebleValue))
         {
-            return true;
+            return new Score(ScoreArea.Treble, trebleValue);
         }
 
         int doubleValue = leftToScore / 2;
 
-        if (isFinishable(doubleValue))
+        if (canDouble && isFinishable(doubleValue))
         {
-            return true;
+            return new Score(ScoreArea.Double, doubleValue);
         }
 
-        return false;
+        return null;
     }
 }

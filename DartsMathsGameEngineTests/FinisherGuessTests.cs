@@ -14,7 +14,7 @@ public sealed class FinisherGuessTests
         // Arrange
         var trebleTwenty = new Score(ScoreArea.Treble, scoreValue: 20);
 
-        var score = new Score(ScoreArea.InnerBull);
+        var score = new Score(ScoreArea.Bullseye);
 
         var scores = new List<Score>()
         {
@@ -118,7 +118,7 @@ public sealed class FinisherGuessTests
         // Arrange
         var trebleTwenty = new Score(ScoreArea.Treble, scoreValue: 20);
 
-        var score = new Score(ScoreArea.InnerBull);
+        var score = new Score(ScoreArea.Bullseye);
 
         var scores = new List<Score>()
         {

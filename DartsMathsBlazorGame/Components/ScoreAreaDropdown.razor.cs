@@ -6,10 +6,10 @@ namespace DartsMathsBlazorGame.Components;
 public partial class ScoreAreaDropdown
 {
     [Parameter]
-    public ScoreArea ScoreArea { get; set; }
+    public ScoreArea ScoringArea { get; set; }
 
     [Parameter]
-    public EventCallback<ScoreArea> ScoreAreaChanged { get; set; }
+    public EventCallback<ScoreArea> ScoringAreaChanged { get; set; }
 
     [Parameter]
     public string Label { get; set; } = "Score Area";
