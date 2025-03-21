@@ -9,12 +9,15 @@
             {
                 string scoreLabel = $"Score {scoreIndex + 1}";
 
+                string ScoreIcon =
+                    scoreIndex + 1 == 2 ? Icons.Material.Filled.ArrowForward : Icons.Material.Filled.Add;
+
                 if (ContainsABull(score.ScoreArea))
                 {
                     <MudItem Class="mt-4 ml-4 mb-4" md="1" xs="3">
                         <MudField Label="@scoreLabel"
                                   Adornment="Adornment.End"
-                                  AdornmentIcon="@Icons.Material.Filled.Add"
+                                  AdornmentIcon="@ScoreIcon"
                                   AdornmentColor="Color.Primary">
                             @score.ScoreArea
                         </MudField>
@@ -25,13 +28,12 @@
                     <MudItem Class="mt-4 ml-4 mb-4" md="1" xs="3">
                         <MudField Label="@scoreLabel"
                                   Adornment="Adornment.End"
-                                  AdornmentIcon="@Icons.Material.Filled.ArrowForward"
+                                  AdornmentIcon="@ScoreIcon"
                                   AdornmentColor="Color.Primary">
                             @score.ScoreLabel
                         </MudField>
                     </MudItem>
                 }
-
 
                 scoreIndex++;
             }
