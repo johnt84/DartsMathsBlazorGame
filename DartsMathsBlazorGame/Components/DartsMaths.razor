@@ -1,73 +1,100 @@
 ﻿@if (ScoreForMathsGuess is not null)
 {
-    <MudField Class="mt-4 ml-4 mb-6" Label="Left to score">
-        @ScoreForMathsGuess.LeftToScore
-    </MudField>
-
-    @if (ScoreForMathsGuess.Scores is not null)
-    {
-        foreach (var score in ScoreForMathsGuess.Scores)
+    <MudStack Row="true">
+        @if (ScoreForMathsGuess.Scores is not null)
         {
-            if (ContainsABull(score.ScoreArea))
+            int scoreIndex = 0;
+
+            foreach (var score in ScoreForMathsGuess.Scores)
             {
-                <MudField Class="ml-4 mb-4" Label="Score">
-                    @score.ScoreArea
-                </MudField>
-            }
-            else
-            {
-                <MudField Class="ml-4  mb-4" Label="Score">
-                    @score.ScoreLabel
-                </MudField>
+                string scoreLabel = $"Score {scoreIndex + 1}";
+
+                if (ContainsABull(score.ScoreArea))
+                {
+                    <MudItem Class="mt-4 ml-4 mb-4" md="1" xs="3">
+                        <MudField Label="@scoreLabel"
+                                  Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.Add"
+                                  AdornmentColor="Color.Primary">
+                            @score.ScoreArea
+                        </MudField>
+                    </MudItem>
+                }
+                else
+                {
+                    <MudItem Class="mt-4 ml-4 mb-4" md="1" xs="3">
+                        <MudField Label="@scoreLabel"
+                                  Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.ArrowForward"
+                                  AdornmentColor="Color.Primary">
+                            @score.ScoreLabel
+                        </MudField>
+                    </MudItem>
+                }
+
+
+                scoreIndex++;
             }
         }
-    }
 
-    <ScoreAreaDropdown Class="mt-4 ml-4 mb-4" @bind-ScoringArea="SelectedScoreArea" />
+        <MudItem Class="mt-4 ml-4 mb-6" md="1" xs="3">
+            <MudField Label="Left to score"
+                      Adornment="Adornment.End"
+                      AdornmentIcon="@Icons.Material.Filled.Dashboard"
+                      AdornmentColor="Color.Primary">
+                @ScoreForMathsGuess.LeftToScore
+            </MudField>
+        </MudItem>
+    </MudStack>
 
-    <MudNumericField T="int"
-                    Class="ml-4 mb-4" 
-                    Label="Score Value"
-                    Min="1"
-                    Max="20"
-                    @bind-Value="ScoreValue" />
+    <MudStack Row="true">
+        <MudItem Class="mt-4 ml-4 mb-4" md="1" xs="4">
+            <ScoreAreaDropdown @bind-ScoringArea="SelectedScoreArea" />
+        </MudItem>
+
+        <MudItem Class="mt-4 ml-4 mb-4" md="1" xs="4">
+            <MudNumericField T="int"
+                                Label="Score Value"
+                                Min="1"
+                                Max="20"
+                                @bind-Value="ScoreValue"
+                                Adornment="Adornment.End"
+                                AdornmentIcon="@GuessStatusIcon(IsGuessCorrect)"
+                                AdornmentColor="GuessStatusColor(IsGuessCorrect)" />
+        </MudItem>
+
+        @if (IsGuessCorrect is not null)
+        {
+            @if (!IsGuessCorrect.Value == true)
+            {
+                <MudItem Class="mt-4 ml-4 mb-4" md="1" xs="4">
+                    <MudField Label="Correct Score"
+                              Adornment="Adornment.End"
+                              AdornmentIcon="@Icons.Material.Filled.CheckCircle"
+                              AdornmentColor="Color.Success">
+                        @ScoreForMathsGuess.ScoreToFinish.ScoreLabel
+                    </MudField>
+                </MudItem> 
+            }
+        }
+    </MudStack>
 
     <MudButton Variant="Variant.Filled"
-               Disabled="IsGuessCorrect is not null"
-               Class="ml-4 mt-4"
-               Color="Color.Primary"
-               OnClick="Guess"
-               Size="Size.Small">
+                Disabled="IsGuessCorrect is not null"
+                Class="ml-4 mt-4"
+                Color="Color.Primary"
+                OnClick="Guess"
+                Size="Size.Small">
         Guess
     </MudButton>
 
     <MudButton Variant="Variant.Filled"
-               Class="ml-4 mt-4"
-               Color="Color.Primary"
-               OnClick="Next"
-               Size="Size.Small">
+                Class="ml-4 mt-4"
+                Color="Color.Primary"
+                OnClick="Next"
+                Size="Size.Small">
         Next
     </MudButton>
-
-    @if (IsGuessCorrect is not null)
-    {
-        @if (IsGuessCorrect.Value == true)
-        {
-            <MudField Class="mt-5 ml-4 mb-4">
-                Correct
-            </MudField>
-        }
-        else
-        {
-            <MudField Class="mt-5 ml-4 mb-4">
-                Incorrect
-            </MudField>
-
-            <MudField Class="mt-5 ml-4 mb-4" Label="Correct Score">
-                @ScoreForMathsGuess.ScoreToFinish.ScoreLabel
-            </MudField>
-        }
-    }
 }
 
 

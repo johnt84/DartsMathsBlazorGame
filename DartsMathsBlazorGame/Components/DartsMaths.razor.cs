@@ -2,6 +2,7 @@
 using DartsMathsGameEngine.Models.Enums;
 using DartsMathsGameEngine.Services;
 using Microsoft.AspNetCore.Components;
+using MudBlazor;
 
 namespace DartsMathsBlazorGame.Components;
 
@@ -20,6 +21,22 @@ public partial class DartsMaths
 
     private bool ContainsABull (ScoreArea scoreArea) =>
         scoreArea == ScoreArea.Bullseye || scoreArea == ScoreArea.OuterBull;
+
+    private string? GuessStatusIcon(bool? isGuessCorrect) => 
+        isGuessCorrect switch
+        {
+            true => Icons.Material.Filled.CheckCircle,
+            false => Icons.Material.Filled.Error,
+            _ => null
+        };
+
+    private Color GuessStatusColor(bool? isGuessCorrect) => 
+        isGuessCorrect switch
+        {
+            true => Color.Success,
+            false => Color.Error,
+            _ => Color.Default
+        };
 
     protected override void OnInitialized()
     {
