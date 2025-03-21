@@ -13,7 +13,7 @@ public class DartsMathsService : IDartsMathsService
 
     private const int MinimumFinalScore = 41;
 
-    private const int MaximumFinalScore = 120;
+    private const int MaximumFinalScore = 155;
 
     public DartsMathsService()
     {
@@ -134,9 +134,9 @@ public class DartsMathsService : IDartsMathsService
     {
         var random = new Random();
 
-        int finisherScore = 169;
+    int finisherScore = 169;
 
-        var nonFinishers = new List<int> { 159, 162, 163, 165, 166, 168, 169 };
+    var nonFinishers = new List<int> { 159, 162, 163, 165, 166, 168, 169 };
 
         while (nonFinishers.Contains(finisherScore))
         {
