@@ -1,4 +1,16 @@
-﻿@if (ScoreForMathsGuess is not null)
+﻿<MudItem Class="mt-4 ml-4 mb-4">
+    <MudField Typo="Typo.h5" >
+        <MudImage Src="images/dartboard.jpg"
+                  Width="75"
+                  Height="75"
+                  Alt="Datboard"
+                  Class="rounded-lg ma-4" />
+
+        Darts Maths
+    </MudField>
+</MudItem>
+
+@if (ScoreForMathsGuess is not null)
 {
     <MudStack Row="true">
         @if (ScoreForMathsGuess.Scores is not null)
@@ -98,5 +110,3 @@
         Next
     </MudButton>
 }
-
-
