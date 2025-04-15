@@ -15,14 +15,14 @@
     <MudStack Row="true">
         @if (ScoreForMathsGuess.Scores is not null)
         {
-            int scoreIndex = 0;
+            int dartIndex = 0;
 
             foreach (var score in ScoreForMathsGuess.Scores)
             {
-                string scoreLabel = $"Score {scoreIndex + 1}";
+                string scoreLabel = $"Dart {dartIndex + 1}";
 
                 string ScoreIcon =
-                    scoreIndex + 1 == 2 ? Icons.Material.Filled.ArrowForward : Icons.Material.Filled.Add;
+                    dartIndex + 1 == 2 ? Icons.Material.Filled.ArrowForward : Icons.Material.Filled.Add;
 
                 if (ContainsABull(score.ScoreArea))
                 {
@@ -47,7 +47,7 @@
                     </MudItem>
                 }
 
-                scoreIndex++;
+                dartIndex++;
             }
         }
 
