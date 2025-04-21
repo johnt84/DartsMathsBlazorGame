@@ -63,11 +63,12 @@
 
     <MudStack Row="true">
         <MudItem Class="mt-4 ml-4 mb-4" md="1" xs="4">
-            <ScoreAreaDropdown @bind-ScoringArea="SelectedScoreArea" />
+            <ScoreAreaDropdown ReadOnly="IsGuessCorrect is not null" @bind-ScoringArea="SelectedScoreArea" />
         </MudItem>
 
         <MudItem Class="mt-4 ml-4 mb-4" md="1" xs="4">
             <MudNumericField T="int"
+                                ReadOnly="IsGuessCorrect is not null"
                                 Label="Score Value"
                                 Min="1"
                                 Max="20"

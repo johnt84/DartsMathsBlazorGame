@@ -17,6 +17,9 @@ public partial class ScoreAreaDropdown
     [Parameter]
     public string? Class { get; set; }
 
+    [Parameter]
+    public bool ReadOnly { get; set; }
+
     private List<ScoreArea> ScoreAreas { get; set; } = new List<ScoreArea>();
 
     protected override void OnInitialized()
