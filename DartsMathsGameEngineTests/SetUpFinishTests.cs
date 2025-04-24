@@ -14,7 +14,7 @@ public sealed class SetUpFinishTests
     public void FinishAndScoresGeneratedSeveralTime_AllCanFinish()
     {
         // Arrange
-        int numberOfExecutions = 1000;
+        int numberOfExecutions = 100000;
 
         // Act
         var scoresForMathsGuesses = new List<ScoreForMathsGuess>();
