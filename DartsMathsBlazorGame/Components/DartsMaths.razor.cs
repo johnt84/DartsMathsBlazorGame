@@ -11,9 +11,6 @@ public partial class DartsMaths
     [Inject]
     private IDartsMathsService DartsMathsService { get; set; } = null!;
 
-    [Inject]
-    private IDialogService DialogService { get; set; } = null!;
-
     private ScoreForMathsGuess? ScoreForMathsGuess { get; set; }
 
     private ScoreArea SelectedScoreArea { get; set; }
@@ -51,19 +48,6 @@ public partial class DartsMaths
     }
 
     private void OnNextClick() => SetUpGuess();
-
-    public async Task OnScoreGuideClickAsync()
-    {
-        var options = new DialogOptions
-        {
-            MaxWidth = MaxWidth.Medium,
-            FullWidth = true,
-            CloseButton = true
-        };
-
-        var dialog = await DialogService.ShowAsync<ScoreGuideDialog>("Score Guide", options);
-        await dialog.Result;
-    }
 
     private void SetUpGuess()
     {
