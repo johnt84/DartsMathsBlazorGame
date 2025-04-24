@@ -94,20 +94,32 @@
         }
     </MudStack>
 
-    <MudButton Variant="Variant.Filled"
-                Disabled="IsGuessCorrect is not null"
-                Class="ml-4 mt-4"
-                Color="Color.Primary"
-                OnClick="Guess"
-                Size="Size.Small">
-        Guess
-    </MudButton>
+    <MudStack Row="true">
+        <MudButton Variant="Variant.Filled"
+                   Disabled="IsGuessCorrect is not null"
+                   Class="ml-4 mt-4"
+                   Color="Color.Primary"
+                   OnClick="OnGuessClick"
+                   Size="Size.Small">
+            Guess
+        </MudButton>
 
-    <MudButton Variant="Variant.Filled"
-                Class="ml-4 mt-4"
-                Color="Color.Primary"
-                OnClick="Next"
-                Size="Size.Small">
-        Next
-    </MudButton>
+        <MudButton Variant="Variant.Filled"
+                   Class="ml-4 mt-4"
+                   Color="Color.Primary"
+                   OnClick="OnNextClick"
+                   Size="Size.Small">
+            Next
+        </MudButton>
+
+        <MudButton Variant="Variant.Filled"
+                   Class="ml-4 mt-4"
+                   Color="Color.Primary"
+                   EndIcon="@Icons.Material.Filled.Help"
+                   OnClick="OnScoreGuideClickAsync"
+                   Size="Size.Small">
+            Score Guide
+        </MudButton>
+    </MudStack>
+
 }
