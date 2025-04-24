@@ -22,8 +22,6 @@ public partial class ScoreAreaDropdown
 
     private List<ScoreArea> ScoreAreas { get; set; } = new List<ScoreArea>();
 
-    protected override void OnInitialized()
-    {
+    protected override void OnInitialized() =>
         ScoreAreas = Enum.GetValues<ScoreArea>().ToList();
-    }
 }
