@@ -11,7 +11,13 @@ For example if the left to score is 69 and the first dart thrown is a 16 and the
 * 16 + 25 = 41
 * Need to score 69 - 41 = 28 so should throw a double 14 to successfully checkout
 
+**Correct Guess**
+
 ![image](https://github.com/user-attachments/assets/5b7b68dc-124d-4d75-8da4-4c6b7fd00d91)
+
+**Incorrect Guess**
+
+![image](https://github.com/user-attachments/assets/f59a72c1-577a-4c4d-9904-1915842fc30e)
 
 [Dart scoring rules are described further here](https://www.dartscorner.co.uk/blogs/how-to/the-rules-of-darts-explained)
 
