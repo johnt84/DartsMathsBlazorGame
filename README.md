@@ -4,7 +4,7 @@ Darts Maths game developed in Blazor which provides maths questions in the form 
 
 The player is given a score that is left to finish with 2 darts already thrown and the player has to select which dart would succesfully complete the scoring (i.e there would be no score left after the last dart was thrown).  The final dart has to provide a successful checkout of either a double (1 - 20) or a bullseye (50).
 
-For example if the left to score is 69 and the first dart thrown is a 16 and the second dart throws is an Outer Bull (25) then the correct finishing dart is Double 14 as:-
+For example if the left to score is 69 and the first dart thrown is a 16 and the second dart thrown is an Outer Bull (25) then the correct finishing dart is Double 14 as:-
 
 * 16 + 25 = 41
 * Need to score 69 - 41 = 28 so should throw a double 14
