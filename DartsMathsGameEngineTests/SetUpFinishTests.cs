@@ -8,6 +8,8 @@ namespace DartsMathsEngineTests;
 [TestClass]
 public sealed class SetUpFinishTests
 {
+    private const int BullesyeScore = 50;
+    
     [TestMethod]
     public void FinishAndScoresGeneratedSeveralTime_AllCanFinish()
     {
@@ -42,10 +44,12 @@ public sealed class SetUpFinishTests
         bool allScoresArePositive = totalScores.All(totalScore => totalScore > 0);
         bool allLeftToScoreArePositive = leftToScoreAfterFinishes.All(leftToScore => leftToScore > 0);
         bool allCanFinish = canFinishes.All(canFinish => canFinish);
+        bool leftToScoreContainsABullesye = leftToScoreAfterFinishes.Contains(BullesyeScore);
 
         allScoresArePositive.Should().BeTrue();
         allLeftToScoreArePositive.Should().BeTrue();
         allCanFinish.Should().BeTrue();
+        leftToScoreContainsABullesye.Should().BeTrue();
     }
 
     private ScoreForMathsGuess CallService(bool completeFinisher = true)
@@ -74,7 +78,7 @@ public sealed class SetUpFinishTests
             ScoreArea.Double => score.ScoreValue!.Value * 2,
             ScoreArea.Treble => score.ScoreValue!.Value * 3,
             ScoreArea.OuterBull => 25,
-            ScoreArea.Bullseye => 50,
+            ScoreArea.Bullseye => BullesyeScore,
             _ => throw new ArgumentException("Invalid score area")
         };
 
@@ -82,26 +86,12 @@ public sealed class SetUpFinishTests
     {
         bool CanFinishScore(int value) => value <= 20;
 
-        if (CanFinishScore(leftToScore))
+        if (leftToScore == BullesyeScore)
         {
             return true;
         }
 
-        bool canTreble = leftToScore % 3 == 0;
         bool canDouble = leftToScore % 2 == 0;
-
-        if (!canTreble && !canDouble)
-        {
-            return false;
-        }
-
-        int divideByThree = leftToScore / 3;
-
-        if (canTreble && CanFinishScore(divideByThree))
-        {
-            return true;
-        }
-
         int divideByTwo = leftToScore / 2;
 
         if (canDouble && CanFinishScore(divideByTwo))

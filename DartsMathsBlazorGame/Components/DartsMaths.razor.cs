@@ -57,7 +57,7 @@ public partial class DartsMaths
 
     private void ClearGuess()
     {
-        SelectedScoreArea = ScoreArea.Single;
+        SelectedScoreArea = ScoreArea.Double;
         ScoreValue = 1;
         IsGuessCorrect = null;
     }

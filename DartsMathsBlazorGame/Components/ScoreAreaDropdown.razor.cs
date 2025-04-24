@@ -22,6 +22,18 @@ public partial class ScoreAreaDropdown
 
     private List<ScoreArea> ScoreAreas { get; set; } = new List<ScoreArea>();
 
-    protected override void OnInitialized() =>
-        ScoreAreas = Enum.GetValues<ScoreArea>().ToList();
+    protected override void OnInitialized()
+    {
+        var scoreAreas = Enum.GetValues<ScoreArea>().ToList();
+
+        var finishingScoreAreas = new List<ScoreArea>
+        {
+            ScoreArea.Double,
+            ScoreArea.Bullseye
+        };
+
+        ScoreAreas = scoreAreas
+                        .Where(scoreArea => finishingScoreAreas.Contains(scoreArea))
+                        .ToList();
+    }
 }

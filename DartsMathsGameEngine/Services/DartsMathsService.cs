@@ -15,6 +15,14 @@ public class DartsMathsService : IDartsMathsService
 
     private const int MaximumFinalScore = 155;
 
+    private const int NumberOfScoresInFinisher = 3;
+
+    private const int TrebleMultiplier = 3;
+
+    private const int DoubleMultiplier = 2;
+
+    private const int MaxScoreValue = 20;
+
     public DartsMathsService()
     {
         ScoreForMathsGuess = null;
@@ -41,7 +49,12 @@ public class DartsMathsService : IDartsMathsService
 
     public bool FinisherGuess(IEnumerable<Score> scores)
     {
-        if (ScoreForMathsGuess == null)
+        if (ScoreForMathsGuess == null || ScoreForMathsGuess.Scores is null)
+        {
+            return false;
+        }
+
+        if (scores.Count() != NumberOfScoresInFinisher)
         {
             return false;
         }
@@ -80,6 +93,16 @@ public class DartsMathsService : IDartsMathsService
             return false;
         }
 
+        if (ScoreForMathsGuess.Scores.Count() != NumberOfScoresInFinisher - 1)
+        {
+            return false;
+        }
+
+        if (score.ScoreArea == ScoreArea.Bullseye && score.ScoreValue == BullseyeScore)
+        {
+            return true;
+        }
+
         int scoreValue = 0;
 
         var completeScores = new List<Score>();
@@ -87,10 +110,9 @@ public class DartsMathsService : IDartsMathsService
         completeScores.AddRange(ScoreForMathsGuess.Scores);
         completeScores.Add(score);
 
-        bool scoreContainsValidFinishingThrow = 
-            completeScores.Any(score => score.ScoreArea == ScoreArea.Bullseye || score.ScoreArea == ScoreArea.Double);
+        bool lastScoreIsADoubleOut = score.ScoreArea == ScoreArea.Double || score.ScoreArea == ScoreArea.Bullseye;
 
-        if (!scoreContainsValidFinishingThrow)
+        if (!lastScoreIsADoubleOut)
         {
             return false;
         }
@@ -122,8 +144,8 @@ public class DartsMathsService : IDartsMathsService
         return score.ScoreArea switch
         {
             ScoreArea.Single => score.ScoreValue!.Value,
-            ScoreArea.Double => score.ScoreValue!.Value * 2,
-            ScoreArea.Treble => score.ScoreValue!.Value * 3,
+            ScoreArea.Double => score.ScoreValue!.Value * DoubleMultiplier,
+            ScoreArea.Treble => score.ScoreValue!.Value * TrebleMultiplier,
             ScoreArea.OuterBull => OuterBullScore,
             ScoreArea.Bullseye => BullseyeScore,
             _ => throw new ArgumentException("Invalid score area")
@@ -149,7 +171,6 @@ public class DartsMathsService : IDartsMathsService
     private ScoreForMathsGuess GenerateScores(int finisherScore)
     {
         int scoreSum = finisherScore;
-        bool containsFinisher = false;
 
         var generatedScores = new List<Score>();
 
@@ -158,14 +179,8 @@ public class DartsMathsService : IDartsMathsService
         while (scoreSum >= finisherScore || finishingScore is null)
         {
             generatedScores.Clear();
-            containsFinisher = false;
             generatedScores.Add(GenerateScore());
             generatedScores.Add(GenerateScore());
-
-            if (generatedScores.Any(score => score.ScoreArea == ScoreArea.Bullseye || score.ScoreArea == ScoreArea.Double))
-            {
-                containsFinisher = true;
-            }
 
             int currentScoreIndex = 0;
 
@@ -183,7 +198,7 @@ public class DartsMathsService : IDartsMathsService
 
             int leftToScore = finisherScore - scoreSum;
 
-            finishingScore = CanFinish(containsFinisher, leftToScore);
+            finishingScore = CanFinish(leftToScore);
         }
 
         return new ScoreForMathsGuess
@@ -212,36 +227,25 @@ public class DartsMathsService : IDartsMathsService
         return new Score((ScoreArea)scoreArea, scoreValue: scoreValue);
     }
 
-    private Score? CanFinish(bool scoresContainsFinisher, int leftToScore)
+    private Score? CanFinish(int leftToScore)
     {
-        bool isFinishable(int value) => value > 0 && value <= 20;
+        bool isFinishable(int value) => value > 0 && value <= MaxScoreValue;
 
-        if (scoresContainsFinisher && isFinishable(leftToScore))
+        if (leftToScore == BullseyeScore)
         {
-            return new Score(ScoreArea.Single, leftToScore);
+            return new Score(ScoreArea.Bullseye);
         }
 
-        bool canTreble = leftToScore % 3 == 0;
-        bool canDouble = leftToScore % 2 == 0;
+        bool isDouble = leftToScore % DoubleMultiplier == 0;
+        int divideByTwo = leftToScore / DoubleMultiplier;
 
-        if (canTreble && canDouble)
+        bool isDoubleOut = isDouble && isFinishable(divideByTwo);
+
+        if (isDoubleOut)
         {
-            return null;
+            return new Score(ScoreArea.Double, divideByTwo);
         }
 
-        int trebleValue = leftToScore / 3;
-
-        if (scoresContainsFinisher && canTreble && isFinishable(trebleValue))
-        {
-            return new Score(ScoreArea.Treble, trebleValue);
-        }
-
-        int doubleValue = leftToScore / 2;
-
-        if (canDouble && isFinishable(doubleValue))
-        {
-            return new Score(ScoreArea.Double, doubleValue);
-        }
 
         return null;
     }

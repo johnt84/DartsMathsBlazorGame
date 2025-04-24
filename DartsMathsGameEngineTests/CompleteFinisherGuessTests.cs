@@ -33,17 +33,35 @@ public sealed class CompleteFinisherGuessTests
     public void NoScoresOnScoreForMathsGuess_GuessIsIncorrect()
     {
         // Arrange
+        var scoresForMathsGuess = new ScoreForMathsGuess
+        {
+            LeftToScore = 170
+        };
+
+        var score = new Score(ScoreArea.Bullseye);
+
+        // Act
+        bool isCorrectGuess = CallService(scoresForMathsGuess, score);
+
+        // Assert
+        isCorrectGuess.Should().BeFalse();
+    }
+
+    [TestMethod]
+    public void WhenNotCorrectNumberOfScores_GuessIsIncorrect()
+    {
+        // Arrange
         var trebleTwenty = new Score(ScoreArea.Treble, scoreValue: 20);
 
         var scores = new List<Score>()
         {
             trebleTwenty,
-            trebleTwenty,
         };
 
         var scoresForMathsGuess = new ScoreForMathsGuess
         {
-            LeftToScore = 170
+            LeftToScore = 170,
+            Scores = scores
         };
 
         var score = new Score(ScoreArea.Bullseye);
@@ -135,7 +153,7 @@ public sealed class CompleteFinisherGuessTests
     }
 
     [TestMethod]
-    public void CorrectFinishScoreGuessed_GuessIsCorrect()
+    public void CorrectFinishScoreIsABulleseye_GuessIsCorrect()
     {
         // Arrange
         var trebleTwenty = new Score(ScoreArea.Treble, scoreValue: 20);
@@ -153,6 +171,31 @@ public sealed class CompleteFinisherGuessTests
         };
 
         var score = new Score(ScoreArea.Bullseye);
+
+        // Act
+        bool isCorrectGuess = CallService(scoresForMathsGuess, score);
+
+        // Assert
+        isCorrectGuess.Should().BeTrue();
+    }
+
+    [TestMethod]
+    public void CorrectFinishScoreGuessed_GuessIsCorrect()
+    {
+        // Arrange
+        var scores = new List<Score>()
+        {
+            new Score(ScoreArea.Single, scoreValue: 16),
+            new Score(ScoreArea.OuterBull),
+        };
+
+        var scoresForMathsGuess = new ScoreForMathsGuess
+        {
+            LeftToScore = 69,
+            Scores = scores
+        };
+
+        var score = new Score(ScoreArea.Double, scoreValue: 14);
 
         // Act
         bool isCorrectGuess = CallService(scoresForMathsGuess, score);

@@ -30,6 +30,59 @@ public sealed class FinisherGuessTests
         isCorrectGuess.Should().BeFalse();
     }
 
+    [TestMethod]
+    public void NoScores_GuessIsIncorrect()
+    {
+        // Arrange
+        var trebleTwenty = new Score(ScoreArea.Treble, scoreValue: 20);
+
+        var score = new Score(ScoreArea.Bullseye);
+
+        var scores = new List<Score>()
+        {
+            trebleTwenty,
+            trebleTwenty,
+            score
+        };
+
+        var scoresForMathsGuess = new ScoreForMathsGuess
+        {
+            LeftToScore = 170
+        };
+
+        // Act
+        bool isCorrectGuess = CallService(scoresForMathsGuess, scores);
+
+        // Assert
+        isCorrectGuess.Should().BeFalse();
+    }
+
+    [TestMethod]
+    public void WhenNotCorrectNumberOfScores_GuessIsIncorrect()
+    {
+        // Arrange
+        var trebleTwenty = new Score(ScoreArea.Treble, scoreValue: 20);
+
+        var score = new Score(ScoreArea.Bullseye);
+
+        var scores = new List<Score>()
+        {
+            trebleTwenty,
+            score
+        };
+
+        var scoresForMathsGuess = new ScoreForMathsGuess
+        {
+            LeftToScore = 170,
+            Scores = scores
+        };
+
+        // Act
+        bool isCorrectGuess = CallService(scoresForMathsGuess, scores);
+
+        // Assert
+        isCorrectGuess.Should().BeFalse();
+    }
 
     [TestMethod]
     public void LeftToScoreHasNoFinish_GuessIsIncorrect()
@@ -113,7 +166,7 @@ public sealed class FinisherGuessTests
     }
 
     [TestMethod]
-    public void CorrectFinishScoreGuessed_GuessIsCorrect()
+    public void CorrectFinishScoreGuessedAsABullesye_GuessIsCorrect()
     {
         // Arrange
         var trebleTwenty = new Score(ScoreArea.Treble, scoreValue: 20);
@@ -130,6 +183,31 @@ public sealed class FinisherGuessTests
         var scoresForMathsGuess = new ScoreForMathsGuess
         {
             LeftToScore = 170,
+            Scores = scores
+        };
+
+        // Act
+        bool isCorrectGuess = CallService(scoresForMathsGuess, scores);
+
+        // Assert
+        isCorrectGuess.Should().BeTrue();
+    }
+
+
+    [TestMethod]
+    public void CorrectFinishScoreGuessed_GuessIsCorrect()
+    {
+        // Arrange
+        var scores = new List<Score>()
+        {
+            new Score(ScoreArea.Single, scoreValue: 16),
+            new Score(ScoreArea.OuterBull),
+            new Score(ScoreArea.Double, scoreValue: 14),
+        };
+
+        var scoresForMathsGuess = new ScoreForMathsGuess
+        {
+            LeftToScore = 69,
             Scores = scores
         };
 
