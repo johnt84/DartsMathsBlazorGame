@@ -13,5 +13,7 @@ For example if the left to score is 69 and the first dart thrown is a 16 and the
 
 ![image](https://github.com/user-attachments/assets/5b7b68dc-124d-4d75-8da4-4c6b7fd00d91)
 
+[Dart scoring rules are described further here](https://www.dartscorner.co.uk/blogs/how-to/the-rules-of-darts-explained)
+
 * The game is Developed using Blazor Server/.Net 8 and utilises MudBlazor for the GUI Component framework
 * There is a unit test app which uses MS Test .Net 8 and utilises the FluentAssertions library for the test assertions on the GameEngine Service
