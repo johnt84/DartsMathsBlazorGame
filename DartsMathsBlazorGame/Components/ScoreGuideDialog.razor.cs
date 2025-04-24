@@ -20,6 +20,6 @@ Darts scoring consists of:
 * Outer bull is 25 points
 * Bullseye (Inner bull) is 50 points
 
-The final dart which gives a successful checkout must be a double or a bullseye.
+The final dart which gives a successful checkout must be a double (1- 20) or a bullseye.
 ";
 }
