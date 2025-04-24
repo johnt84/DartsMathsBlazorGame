@@ -1,6 +1,8 @@
 # Darts Maths Blazor Game
 
-Darts Maths game developed in Blazor which provides maths questions in the form of darts scores.
+Darts Maths Game where the player guesses the correct dart that would complete the game.
+
+The game is developed in Blazor which provides maths questions in the form of darts scores.
 
 The player is given a score that is left to finish with 2 darts already thrown and the player has to select which dart would succesfully complete the scoring (i.e there would be no score left after the last dart was thrown).  The final dart has to provide a successful checkout of either a double (1 - 20) or a bullseye (50).
 
