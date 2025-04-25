@@ -4,7 +4,10 @@
            Label="@Label"
            Class="@Class"
            ValueChanged="ScoringAreaChanged"
-           Placeholder="Please Select">
+           Placeholder="Please Select"
+           Adornment="Adornment"
+           AdornmentIcon="@AdornmentIcon"
+           AdornmentColor="AdornmentColor">
     @foreach (var scoreArea in ScoreAreas)
     {
         <MudSelectItem Value="@scoreArea">

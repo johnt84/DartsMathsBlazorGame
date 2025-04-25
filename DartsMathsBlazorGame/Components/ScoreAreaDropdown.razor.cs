@@ -1,5 +1,6 @@
 ﻿using DartsMathsGameEngine.Models.Enums;
 using Microsoft.AspNetCore.Components;
+using MudBlazor;
 
 namespace DartsMathsBlazorGame.Components;
 
@@ -19,6 +20,15 @@ public partial class ScoreAreaDropdown
 
     [Parameter]
     public bool ReadOnly { get; set; }
+
+    [Parameter]
+    public Adornment Adornment { get; set; }
+
+    [Parameter]
+    public string? AdornmentIcon { get; set; }
+
+    [Parameter]
+    public Color AdornmentColor { get; set; }
 
     private List<ScoreArea> ScoreAreas { get; set; } = new List<ScoreArea>();
 

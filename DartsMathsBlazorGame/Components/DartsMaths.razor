@@ -63,7 +63,19 @@
 
     <MudStack Row="true">
         <MudItem Class="mt-4 ml-4 mb-4" md="1" xs="4">
-            <ScoreAreaDropdown ReadOnly="IsGuessCorrect is not null" @bind-ScoringArea="SelectedScoreArea" />
+            @if (SelectedScoreArea == ScoreArea.Bullseye)
+            {
+                <ScoreAreaDropdown ReadOnly="IsGuessCorrect is not null" 
+                                   @bind-ScoringArea="SelectedScoreArea"
+                                   Adornment="Adornment.End"
+                                   AdornmentIcon="@GuessStatusIcon(IsGuessCorrect)"
+                                   AdornmentColor="GuessStatusColor(IsGuessCorrect)" />
+            }
+            else
+            {
+                <ScoreAreaDropdown ReadOnly="IsGuessCorrect is not null"
+                                   @bind-ScoringArea="SelectedScoreArea" />
+            }
         </MudItem>
 
         @if (SelectedScoreArea != ScoreArea.Bullseye)
