@@ -1,14 +1,12 @@
-﻿using DartsMathsGameEngine.Models;
+using DartsMathsGameEngine.Models;
 using DartsMathsGameEngine.Models.Enums;
 using DartsMathsGameEngine.Services;
-using FluentAssertions;
 
-namespace DartsMathsEngineTests;
+namespace DartsMathsGameEngineTests;
 
-[TestClass]
-public sealed class CompleteFinisherGuessTests
+public class CompleteFinisherGuessTests
 {
-    [TestMethod]
+    [Fact]
     public void NoScoreForMathsGuess_GuessIsIncorrect()
     {
         // Arrange
@@ -26,10 +24,10 @@ public sealed class CompleteFinisherGuessTests
         bool isCorrectGuess = CallService(null, score);
 
         // Assert
-        isCorrectGuess.Should().BeFalse();
+        Assert.False(isCorrectGuess);
     }
 
-    [TestMethod]
+    [Fact]
     public void NoScoresOnScoreForMathsGuess_GuessIsIncorrect()
     {
         // Arrange
@@ -44,10 +42,10 @@ public sealed class CompleteFinisherGuessTests
         bool isCorrectGuess = CallService(scoresForMathsGuess, score);
 
         // Assert
-        isCorrectGuess.Should().BeFalse();
+        Assert.False(isCorrectGuess);
     }
 
-    [TestMethod]
+    [Fact]
     public void WhenNotCorrectNumberOfScores_GuessIsIncorrect()
     {
         // Arrange
@@ -70,10 +68,10 @@ public sealed class CompleteFinisherGuessTests
         bool isCorrectGuess = CallService(scoresForMathsGuess, score);
 
         // Assert
-        isCorrectGuess.Should().BeFalse();
+        Assert.False(isCorrectGuess);
     }
 
-    [TestMethod]
+    [Fact]
     public void LeftToScoreHasNoFinish_GuessIsIncorrect()
     {
         // Arrange
@@ -97,10 +95,10 @@ public sealed class CompleteFinisherGuessTests
         bool isCorrectGuess = CallService(scoresForMathsGuess, score);
 
         // Assert
-        isCorrectGuess.Should().BeFalse();
+        Assert.False(isCorrectGuess);
     }
 
-    [TestMethod]
+    [Fact]
     public void LastThrowIsNotADouble_GuessIsIncorrect()
     {
         // Arrange
@@ -122,10 +120,10 @@ public sealed class CompleteFinisherGuessTests
         bool isCorrectGuess = CallService(scoresForMathsGuess, trebleTwenty);
 
         // Assert
-        isCorrectGuess.Should().BeFalse();
+        Assert.False(isCorrectGuess);
     }
 
-    [TestMethod]
+    [Fact]
     public void IncorrectFinishScoreGuessed_GuessIsIncorrect()
     {
         // Arrange
@@ -149,10 +147,10 @@ public sealed class CompleteFinisherGuessTests
         bool isCorrectGuess = CallService(scoresForMathsGuess, score);
 
         // Assert
-        isCorrectGuess.Should().BeFalse();
+        Assert.False(isCorrectGuess);
     }
 
-    [TestMethod]
+    [Fact]
     public void CorrectFinishScoreIsABulleseye_GuessIsCorrect()
     {
         // Arrange
@@ -176,10 +174,10 @@ public sealed class CompleteFinisherGuessTests
         bool isCorrectGuess = CallService(scoresForMathsGuess, score);
 
         // Assert
-        isCorrectGuess.Should().BeTrue();
+        Assert.True(isCorrectGuess);
     }
 
-    [TestMethod]
+    [Fact]
     public void CorrectFinishScoreGuessed_GuessIsCorrect()
     {
         // Arrange
@@ -201,7 +199,7 @@ public sealed class CompleteFinisherGuessTests
         bool isCorrectGuess = CallService(scoresForMathsGuess, score);
 
         // Assert
-        isCorrectGuess.Should().BeTrue();
+        Assert.True(isCorrectGuess);
     }
 
     private bool CallService(ScoreForMathsGuess? scoreForMathsGuess, Score score)
