@@ -1,10 +1,10 @@
 ﻿<MudItem Class="mt-4 ml-4 mb-4">
     <MudField Typo="Typo.h5" >
         <MudImage Src="images/dartboard.jpg"
-                  Width="75"
-                  Height="75"
-                  Alt="Datboard"
-                  Class="rounded-lg ma-4" />
+        Width="75"
+        Height="75"
+        Alt="Datboard"
+        Class="rounded-lg ma-4" />
 
         Darts Maths
     </MudField>
@@ -28,9 +28,9 @@
                 {
                     <MudItem Class="mt-4 ml-4 mb-4" md="1" xs="3">
                         <MudField Label="@scoreLabel"
-                                  Adornment="Adornment.End"
-                                  AdornmentIcon="@ScoreIcon"
-                                  AdornmentColor="Color.Primary">
+                        Adornment="Adornment.End"
+                        AdornmentIcon="@ScoreIcon"
+                        AdornmentColor="Color.Primary">
                             @score.ScoreArea
                         </MudField>
                     </MudItem>
@@ -39,9 +39,9 @@
                 {
                     <MudItem Class="mt-4 ml-4 mb-4" md="1" xs="3">
                         <MudField Label="@scoreLabel"
-                                  Adornment="Adornment.End"
-                                  AdornmentIcon="@ScoreIcon"
-                                  AdornmentColor="Color.Primary">
+                        Adornment="Adornment.End"
+                        AdornmentIcon="@ScoreIcon"
+                        AdornmentColor="Color.Primary">
                             @score.ScoreLabel
                         </MudField>
                     </MudItem>
@@ -53,9 +53,9 @@
 
         <MudItem Class="mt-4 ml-4 mb-6" md="1" xs="3">
             <MudField Label="Left to score"
-                      Adornment="Adornment.End"
-                      AdornmentIcon="@Icons.Material.Filled.Dashboard"
-                      AdornmentColor="Color.Primary">
+            Adornment="Adornment.End"
+            AdornmentIcon="@Icons.Material.Filled.Dashboard"
+            AdornmentColor="Color.Primary">
                 @ScoreForMathsGuess.LeftToScore
             </MudField>
         </MudItem>
@@ -66,17 +66,20 @@
             <ScoreAreaDropdown ReadOnly="IsGuessCorrect is not null" @bind-ScoringArea="SelectedScoreArea" />
         </MudItem>
 
-        <MudItem Class="mt-4 ml-4 mb-4" md="1" xs="4">
-            <MudNumericField T="int"
-                                ReadOnly="IsGuessCorrect is not null"
-                                Label="Score Value"
-                                Min="1"
-                                Max="20"
-                                @bind-Value="ScoreValue"
-                                Adornment="Adornment.End"
-                                AdornmentIcon="@GuessStatusIcon(IsGuessCorrect)"
-                                AdornmentColor="GuessStatusColor(IsGuessCorrect)" />
-        </MudItem>
+        @if (SelectedScoreArea != ScoreArea.Bullseye)
+        {
+            <MudItem Class="mt-4 ml-4 mb-4" md="1" xs="4">
+                <MudNumericField T="int"
+                                 ReadOnly="IsGuessCorrect is not null"
+                                 Label="Score Value"
+                                 Min="1"
+                                 Max="20"
+                                 @bind-Value="ScoreValue"
+                                 Adornment="Adornment.End"
+                                 AdornmentIcon="@GuessStatusIcon(IsGuessCorrect)"
+                                 AdornmentColor="GuessStatusColor(IsGuessCorrect)" />
+            </MudItem>
+        }
 
         @if (IsGuessCorrect is not null)
         {
