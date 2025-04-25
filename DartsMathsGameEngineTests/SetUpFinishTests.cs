@@ -1,16 +1,14 @@
 ﻿using DartsMathsGameEngine.Models;
 using DartsMathsGameEngine.Models.Enums;
 using DartsMathsGameEngine.Services;
-using FluentAssertions;
 
-namespace DartsMathsEngineTests;
+namespace DartsMathsGameEngineTests;
 
-[TestClass]
-public sealed class SetUpFinishTests
+public class SetUpFinishTests
 {
     private const int BullesyeScore = 50;
-    
-    [TestMethod]
+
+    [Fact]
     public void FinishAndScoresGeneratedSeveralTime_AllCanFinish()
     {
         // Arrange
@@ -46,10 +44,10 @@ public sealed class SetUpFinishTests
         bool allCanFinish = canFinishes.All(canFinish => canFinish);
         bool leftToScoreContainsABullesye = leftToScoreAfterFinishes.Contains(BullesyeScore);
 
-        allScoresArePositive.Should().BeTrue();
-        allLeftToScoreArePositive.Should().BeTrue();
-        allCanFinish.Should().BeTrue();
-        leftToScoreContainsABullesye.Should().BeTrue();
+        Assert.True(allScoresArePositive);
+        Assert.True(allLeftToScoreArePositive);
+        Assert.True(allCanFinish);
+        Assert.True(leftToScoreContainsABullesye);
     }
 
     private ScoreForMathsGuess CallService(bool completeFinisher = true)
@@ -71,7 +69,7 @@ public sealed class SetUpFinishTests
         return totalScore;
     }
 
-    private int GetScoreValue(Score score) => 
+    private int GetScoreValue(Score score) =>
         score.ScoreArea switch
         {
             ScoreArea.Single => score.ScoreValue!.Value,
@@ -100,5 +98,5 @@ public sealed class SetUpFinishTests
         }
 
         return false;
-    }
+    }    
 }

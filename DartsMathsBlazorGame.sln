@@ -6,9 +6,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DartsMathsBlazorGame", "Dar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DartsMathsGameEngine", "DartsMathsGameEngine\DartsMathsGameEngine.csproj", "{7D092456-5719-43CF-BBF5-9EF2308018C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DartsMathsGameEngineTests", "DartsMathsGameEngineTests\DartsMathsGameEngineTests.csproj", "{9A0877FB-AB09-47D3-93CB-F6904A96056F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DartsMathsConsoleApp", "DartsMathsConsoleApp\DartsMathsConsoleApp.csproj", "{1962CB50-C7C0-46DD-9774-4F71319731FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DartsMathsGameEngineTests", "DartsMathsGameEngineTests\DartsMathsGameEngineTests.csproj", "{3C149CC3-1E0E-426A-887D-88FC3E0DAD20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,14 +24,14 @@ Global
 		{7D092456-5719-43CF-BBF5-9EF2308018C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D092456-5719-43CF-BBF5-9EF2308018C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D092456-5719-43CF-BBF5-9EF2308018C6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9A0877FB-AB09-47D3-93CB-F6904A96056F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9A0877FB-AB09-47D3-93CB-F6904A96056F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9A0877FB-AB09-47D3-93CB-F6904A96056F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9A0877FB-AB09-47D3-93CB-F6904A96056F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1962CB50-C7C0-46DD-9774-4F71319731FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1962CB50-C7C0-46DD-9774-4F71319731FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1962CB50-C7C0-46DD-9774-4F71319731FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1962CB50-C7C0-46DD-9774-4F71319731FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C149CC3-1E0E-426A-887D-88FC3E0DAD20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C149CC3-1E0E-426A-887D-88FC3E0DAD20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C149CC3-1E0E-426A-887D-88FC3E0DAD20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C149CC3-1E0E-426A-887D-88FC3E0DAD20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
