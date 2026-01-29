@@ -3,11 +3,14 @@ on:
   push:
     branches:
     - master
+permissions:
+  id-token: write
+  contents: read
 env:
   AZURE_WEBAPP_NAME: DartsMaths
   AZURE_WEBAPP_PACKAGE_PATH: DartsMathsBlazorGame\published
   CONFIGURATION: Release
-  DOTNET_CORE_VERSION: 8.0.x
+  DOTNET_CORE_VERSION: 10.0.x
   WORKING_DIRECTORY: DartsMathsBlazorGame
 jobs:
   build:
@@ -40,6 +43,12 @@ jobs:
       with:
         name: webapp
         path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+    - name: Azure Login
+      uses: azure/login@v2
+      with:
+        client-id: ${{ vars.DartsMaths_CLIENT_ID_A4B3 }}
+        tenant-id: ${{ vars.DartsMaths_TENANT_ID_A4B3 }}
+        subscription-id: ${{ vars.DartsMaths_SUBSCRIPTION_ID_A4B3 }}
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
       with:
