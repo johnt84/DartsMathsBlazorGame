@@ -22,4 +22,4 @@ For example if the left to score is 69 and the first dart thrown is a 16 and the
 [Dart scoring rules are described further here](https://www.dartscorner.co.uk/blogs/how-to/the-rules-of-darts-explained)
 
 * The game is Developed using Blazor Server/.Net 8 and utilises MudBlazor for the GUI Component framework
-* There is a unit test app which tests the GameEngine service and uses the XUnit .Net 8 Test Framework
+* There is a unit test app which tests the GameEngine service and uses the XUnit .Net 10 Test Framework
