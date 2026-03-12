@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="DartsMathsBlazorGame/DartsMathsBlazorGame.csproj" />
+  <Project Path="DartsMathsConsoleApp/DartsMathsConsoleApp.csproj" />
+  <Project Path="DartsMathsGameEngine/DartsMathsGameEngine.csproj" />
+  <Project Path="DartsMathsGameEngineTests/DartsMathsGameEngineTests.csproj" />
+</Solution>
