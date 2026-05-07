@@ -13,11 +13,11 @@ For example if the left to score is 69 and the first dart thrown is a 16 and the
 
 **Correct Guess**
 
-<img width="660" height="564" alt="image" src="https://github.com/user-attachments/assets/fe69ed55-1432-4da7-8a8a-7b4fead16197" />
+<img width="633" height="505" alt="image" src="https://github.com/user-attachments/assets/85f34b2a-d4fc-4db3-9690-942bb2943dbd" />
 
 **Incorrect Guess**
 
-<img width="587" height="530" alt="image" src="https://github.com/user-attachments/assets/ac513372-3055-4d9f-9977-406b2af9716d" />
+<img width="645" height="521" alt="image" src="https://github.com/user-attachments/assets/cb033094-431a-48d0-8d5d-c1da83d3132c" />
 
 [Dart scoring rules are described further here](https://www.dartscorner.co.uk/blogs/how-to/the-rules-of-darts-explained)
 
