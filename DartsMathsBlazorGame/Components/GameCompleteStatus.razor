@@ -1,0 +1,19 @@
+﻿@if (GameState.GameComplete)
+@if (GameState.GameComplete)
+{
+    if (GameState.HighestScoreBeaten)
+    {
+        <MudText Class="pt-4 pl-4">
+            Congratulations, you beat the highest score!
+        </MudText>
+    }
+
+    <MudText Class="pt-4 pl-4">
+        You got @GameState.NumberOfCorrectAnswers out of @GameState.TotalQuestionsAnswered correct!
+    </MudText>
+}
+
+@code{
+    [Parameter]
+    public GameState GameState { get; set; } = null!;
+}

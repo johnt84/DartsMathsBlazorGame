@@ -1,4 +1,5 @@
 using DartsMathsBlazorGame.Components;
+using DartsMathsGameEngine.Logic;
 using DartsMathsGameEngine.Services;
 using MudBlazor.Services;
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddScoped<IDartsGameEngine, DartsGameEngine>();
 builder.Services.AddScoped<IDartsMathsService, DartsMathsService>();
 
 builder.Services.AddMudServices();

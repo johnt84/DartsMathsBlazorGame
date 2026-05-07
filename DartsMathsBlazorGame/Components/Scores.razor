@@ -1,0 +1,21 @@
+﻿<MudPaper Class="ml-4">
+    <MudText>
+        Score: @GameState.NumberOfCorrectAnswers/@GameState.NumberOfQuestions
+    </MudText>
+    <MudText>
+        Questions Answered: @GameState.TotalQuestionsAnswered
+    </MudText>
+    <MudText>
+        Questions Left: @GameState.QuestionsLeftToAnswer
+    </MudText>
+    <MudText Class="mb-2">
+        Highest Score: @GameState.HighestScore
+    </MudText>
+</MudPaper>
+
+
+@code
+{
+    [Parameter]
+    public GameState GameState { get; set; } = null!;
+}
