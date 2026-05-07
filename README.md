@@ -13,13 +13,13 @@ For example if the left to score is 69 and the first dart thrown is a 16 and the
 
 **Correct Guess**
 
-![image](https://github.com/user-attachments/assets/5b7b68dc-124d-4d75-8da4-4c6b7fd00d91)
+<img width="660" height="564" alt="image" src="https://github.com/user-attachments/assets/fe69ed55-1432-4da7-8a8a-7b4fead16197" />
 
 **Incorrect Guess**
 
-![image](https://github.com/user-attachments/assets/f59a72c1-577a-4c4d-9904-1915842fc30e)
+<img width="587" height="530" alt="image" src="https://github.com/user-attachments/assets/ac513372-3055-4d9f-9977-406b2af9716d" />
 
 [Dart scoring rules are described further here](https://www.dartscorner.co.uk/blogs/how-to/the-rules-of-darts-explained)
 
-* The game is Developed using Blazor Server/.Net 8 and utilises MudBlazor for the GUI Component framework
+* The game is Developed using Blazor Server/.Net 10 and utilises MudBlazor for the GUI Component framework
 * There is a unit test app which tests the GameEngine service and uses the XUnit .Net 10 Test Framework
