@@ -30,7 +30,8 @@
                     if (ContainsABull(score.ScoreArea))
                     {
                         <MudItem Class="mt-4 ml-4 mb-4" md="1" xs="3">
-                            <MudField Label="@scoreLabel"
+                            <MudField Typo="Typo.body1"
+                                      Label="@scoreLabel"
                                       Adornment="Adornment.End"
                                       AdornmentIcon="@ScoreIcon"
                                       AdornmentColor="Color.Primary">
@@ -41,7 +42,8 @@
                     else
                     {
                         <MudItem Class="mt-4 ml-4 mb-4" md="1" xs="3">
-                            <MudField Label="@scoreLabel"
+                            <MudField Typo="Typo.body1" 
+                                      Label="@scoreLabel"
                                       Adornment="Adornment.End"
                                       AdornmentIcon="@ScoreIcon"
                                       AdornmentColor="Color.Primary">
@@ -55,7 +57,8 @@
             }
 
             <MudItem Class="mt-4 ml-4 mb-6" md="1" xs="3">
-                <MudField Label="Left to score"
+                <MudField Typo="Typo.body1" 
+                          Label="Left to score"
                           Adornment="Adornment.End"
                           AdornmentIcon="@Icons.Material.Filled.Dashboard"
                           AdornmentColor="Color.Primary">
@@ -85,6 +88,7 @@
             {
                 <MudItem Class="mt-4 ml-4 mb-4" md="1" xs="4">
                     <MudNumericField T="int"
+                                     Typo="Typo.body1"
                                      ReadOnly="IsGuessCorrect is not null"
                                      Label="Score Value"
                                      Min="1"
@@ -101,7 +105,8 @@
                 @if (!IsGuessCorrect.Value == true)
                 {
                     <MudItem Class="mt-4 ml-4 mb-4" md="1" xs="4">
-                        <MudField Label="Correct Score"
+                        <MudField Typo="Typo.body1"
+                                  Label="Correct Score"
                                   Adornment="Adornment.End"
                                   AdornmentIcon="@Icons.Material.Filled.CheckCircle"
                                   AdornmentColor="Color.Success">
