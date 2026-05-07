@@ -23,10 +23,8 @@ public class DartsMathsService : IDartsMathsService
 
     private const int MaxScoreValue = 20;
 
-    public DartsMathsService()
-    {
-        ScoreForMathsGuess = null;
-    }
+    public DartsMathsService() =>
+         ScoreForMathsGuess = null;
 
     public ScoreForMathsGuess SetUpFinisher(bool completeFinisher)
     {
@@ -245,7 +243,6 @@ public class DartsMathsService : IDartsMathsService
         {
             return new Score(ScoreArea.Double, divideByTwo);
         }
-
 
         return null;
     }
